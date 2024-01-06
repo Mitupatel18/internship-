@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Post</h1><br>
+
+<ul>
+{% for post in object_list %}
+	<li><b><a href=" {% url 'article-delail' post.pk %}">{{ post.title }}</b></a><small>  -({{ post.post_date}})</small><br><b>by {{ post.author }} - </b>
+		<small>
+			<a href="{% url 'update_post' post.pk %}">(Edit)</a> |
+			<a href="{% url 'delete_post' post.pk %}">(delete)</a><br>
+
+		</small></br>
+	{{ post.body| slice:":200" | safe}}</li><hr>
+{% endfor %}
+</ul>
+{% endblock %} 
