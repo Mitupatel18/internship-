@@ -1,0 +1,60 @@
+{% extends 'core/base.html' %}
+{% block title %}Edit Student{% endblock title %}
+{% block main_content %}
+<section class="container">
+    <nav class="navbar bg-dark shadow-lg border-body " data-bs-theme="dark">
+        <div class="container-fluid ">
+            <a class="navbar-brand">School/University</a>
+            <a href="{% url 'logout' %}" class="btn btn-primary justify-content-around d-flex">Logout</a>
+        </div>
+    </nav>
+    <div class="row justify-content-around text-center text-white mt-5">
+        <div class="col-sm-8">
+            <h3>Delete Student(CRUD In Django)</h3>
+        </div>
+    </div>
+    <div class="row justify-content-around mt-3">
+        <div class="col-sm-4">
+            <form action="" method="POST" class="bg-white p-3 rounded shadow">
+                <lable for="id">ID:</lable>
+                <p name="id"><b>{{ stud.id }}</b></p><hr>
+                <lable for="name">Name:</lable>
+                <p name="name"><b>{{ stud.name }}</b></p><hr>
+                    <lable for="roll">Roll NO.:</lable>
+                <p name="roll"><b>{{ stud.roll }}</b></p><hr>
+                    <lable for="city">City:</lable>
+                <p name="city"><b>{{ stud.city }}</b></p><hr>
+
+                {% csrf_token %}
+                <input type="hidden" name="id" value={{form.instance.id}}>
+                <input type="submit" value="Delete" class="btn btn-danger">&nbsp;&nbsp;
+            <a href="{% url 'cancel' %}" class="btn btn-danger justify-content-around flex">Cancel</a>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock main_content %}
+
+
+
+
+
+{% comment %} delete
+<form action="{% url 'delete-student' %}" method="POST">
+    {% csrf_token %}
+<input type="hidden" name="id" value={{stud.id}}> 
+<input type="submit" value="Delete" class="btn btn-danger btn-sm"> 
+</form> {% endcomment %}
+
+
+
+
+
+
+{% comment %} edit
+<form action="" method="POST" class="bg-white p-3 rounded shadow">
+    {% csrf_token %}
+    {{form.as_p}}
+<input type="submit" value="Submit" class="btn btn-primary">
+<a href="{% url 'cancel' %}" class="btn btn-danger justify-content-around flex">Cancel</a>
+</form> {% endcomment %}
